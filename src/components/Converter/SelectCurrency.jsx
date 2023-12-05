@@ -1,4 +1,4 @@
-import { Autocomplete, Grid, TextField } from "@mui/material";
+import { Alert, Autocomplete, Grid, TextField } from "@mui/material";
 import useAxios from "../../hooks/useAxios";
 import Loader from "../Loader/Loader";
 
@@ -8,7 +8,11 @@ const SelectCurrency = ({ value, setValue, label }) => {
     return <Loader />;
   }
   if (error) {
-    return "Something went wrong! Please try again!";
+    return (
+      <Alert variant="outlined" severity="error">
+        Something went wrong! Try again!
+      </Alert>
+    );
   }
 
   const countryWithCurrency = data

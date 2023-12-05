@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Alert, Grid } from "@mui/material";
 import InputAmount from "./InputAmount";
 import SelectCurrency from "./SelectCurrency";
 import SwitchCurrency from "./SwitchCurrency";
@@ -50,7 +50,9 @@ const Converter = () => {
           setRate(response.data[codeToCurrency].value);
         }
       } catch (error) {
-        console.log(error);
+        <Alert variant="outlined" severity="error">
+          Something went wrong! Try again!
+        </Alert>;
       }
     };
     fetchCurrency();
