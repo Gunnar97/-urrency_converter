@@ -29,7 +29,7 @@ const CurrencyProvider = ({ children }) => {
 };
 
 CurrencyProvider.propTypes = {
-  children: PropTypes.ReactNode.isRequired,
+  children: PropTypes.ReactNode,
 };
 
 export default CurrencyProvider;
