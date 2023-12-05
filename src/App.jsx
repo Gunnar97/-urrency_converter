@@ -4,13 +4,14 @@ import ActualiCourses from "./components/ActualiCourses/ActualiCourses";
 
 function App() {
   const boxStyles = {
-    background: "red",
+    background: "#fdfdfd",
     textAlign: "center",
 
     color: "#222",
     minHeight: "20rem",
     borderRadius: 3,
-    padding: "4rem, 2rem",
+    padding: "40px,24px",
+
     position: "relative",
   };
   return (
