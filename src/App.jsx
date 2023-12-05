@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Container, Typography } from "@mui/material";
+import Converter from "./components/Converter/Converter";
+import ActualiCourses from "./components/ActualiCourses/ActualiCourses";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const boxStyles = {
+    background: "red",
+    textAlign: "center",
 
+    color: "#222",
+    minHeight: "20rem",
+    borderRadius: 3,
+    padding: "4rem, 2rem",
+    position: "relative",
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Container maxWidth="md" sx={boxStyles}>
+      <Typography variant="h2" sx={{ marginBottom: "2rem" }}>
+        Currency Converter
+      </Typography>
+      <ActualiCourses />
+      <Converter />
+    </Container>
+  );
 }
 
-export default App
+export default App;
