@@ -16,6 +16,7 @@ const SelectCurrency = ({ value, setValue, label }) => {
     .map(({ currencies, name }) => {
       return `${Object.keys(currencies)[0]} - ${name.common}`;
     });
+  const uniqueCurrencies = [...new Set(countryWithCurrency)];
   return (
     <Grid item>
       <Autocomplete
@@ -24,7 +25,7 @@ const SelectCurrency = ({ value, setValue, label }) => {
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-        options={countryWithCurrency}
+        options={uniqueCurrencies}
         renderInput={(params) => <TextField {...params} label={label} />}
       />
     </Grid>

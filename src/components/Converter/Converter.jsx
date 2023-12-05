@@ -23,6 +23,18 @@ const Converter = () => {
   const codeFromCurrency = fromCurrency.split(" ")[0];
   const codeToCurrency = toCurrency.split(" ")[0];
 
+  const handleFromAmountChange = (eve) => {
+    const newValue = eve.target.value;
+    setFromAmount(newValue);
+    setToAmount((parseFloat(newValue) * rate).toFixed(2));
+  };
+
+  const handleToAmountChange = (eve) => {
+    const newValue = eve.target.value;
+    setToAmount(newValue);
+    setFromAmount((parseFloat(newValue) / rate).toFixed(2));
+  };
+
   useEffect(() => {
     const fetchCurrency = async () => {
       try {
@@ -30,7 +42,7 @@ const Converter = () => {
           const response = await getCurrency(
             "https://api.currencyapi.com/v3/latest",
             {
-              apikey: "cur_live_gjmfFxKlEDWT7i0kNQ3XEKECcMtklf2iZ3TavhF8",
+              apikey: "cur_live_KRnDh1C3e9qj6ks7fAGWebBwqkyjBS3DkvvyxtEI",
               currencies: codeToCurrency,
               base_currency: codeFromCurrency,
             }
@@ -44,10 +56,14 @@ const Converter = () => {
     fetchCurrency();
   }, [codeFromCurrency, codeToCurrency, setRate]);
 
+  useEffect(() => {
+    setToAmount((parseFloat(fromAmount) * rate).toFixed(2));
+  }, [rate]);
+
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={12} md={6}>
-        <InputAmount value={fromAmount} setValue={setFromAmount} />
+        <InputAmount value={fromAmount} setValue={handleFromAmountChange} />
       </Grid>
       <Grid item xs={12} md={6}>
         <SelectCurrency
@@ -60,7 +76,7 @@ const Converter = () => {
         <SwitchCurrency />
       </Grid>
       <Grid item xs={12} md={6}>
-        <InputAmount value={toAmount} setValue={setToAmount} />
+        <InputAmount value={toAmount} setValue={handleToAmountChange} />
       </Grid>
       <Grid item xs={12} md={6}>
         <SelectCurrency
