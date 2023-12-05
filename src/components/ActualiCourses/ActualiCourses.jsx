@@ -18,7 +18,7 @@ const ActualCourses = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
-    const fatchCurrentRate = async () => {
+    const fetchCurrentRate = async () => {
       try {
         {
           const response = await getCurrency(
@@ -31,11 +31,13 @@ const ActualCourses = () => {
         setError("Something went wrong! Try again!");
       }
     };
-    fatchCurrentRate();
+    if (!сurrentRate) {
+      fetchCurrentRate();
+    }
 
-    // const timeIntervalId = setInterval(() => {
-    //   setCurrentTime(new Date());
-    // }, 1000);
+    const timeIntervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
 
     return () => {
       clearInterval(timeIntervalId);
@@ -44,9 +46,9 @@ const ActualCourses = () => {
 
   const formattedDate = currentTime.toLocaleDateString();
   const formattedTime = currentTime.toLocaleTimeString();
-  console.log(сurrentRate);
+
   return (
-    <Paper elevation={3} sx={{ maxWidth: "md", ...boxStyles }}>
+    <Paper elevation={6} sx={{ maxWidth: "md", ...boxStyles }}>
       <Grid container gap={"14px"}>
         <Grid item xs={12} gap={"10px"}>
           <div>{formattedTime}</div>

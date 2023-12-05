@@ -1,4 +1,5 @@
 import { Grid, InputAdornment, TextField } from "@mui/material";
+import PropTypes from "prop-types";
 
 const InputAmount = ({ value, setValue }) => {
   return (
@@ -17,4 +18,8 @@ const InputAmount = ({ value, setValue }) => {
   );
 };
 
+InputAmount.propTypes = {
+  value: PropTypes.number.isRequired,
+  setValue: PropTypes.func.isRequired,
+};
 export default InputAmount;

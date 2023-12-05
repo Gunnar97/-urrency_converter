@@ -1,4 +1,5 @@
 import { Alert, Autocomplete, Grid, TextField } from "@mui/material";
+import PropTypes from "prop-types";
 import useAxios from "../../hooks/useAxios";
 import Loader from "../Loader/Loader";
 
@@ -34,6 +35,12 @@ const SelectCurrency = ({ value, setValue, label }) => {
       />
     </Grid>
   );
+};
+
+SelectCurrency.propTypes = {
+  value: PropTypes.number.isRequired,
+  setValue: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default SelectCurrency;

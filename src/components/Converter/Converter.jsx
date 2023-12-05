@@ -26,13 +26,13 @@ const Converter = () => {
   const handleFromAmountChange = (eve) => {
     const newValue = eve.target.value;
     setFromAmount(newValue);
-    setToAmount((parseFloat(newValue) * rate).toFixed(2));
+    setToAmount((parseFloat(newValue) * rate).toFixed(3));
   };
 
   const handleToAmountChange = (eve) => {
     const newValue = eve.target.value;
     setToAmount(newValue);
-    setFromAmount((parseFloat(newValue) / rate).toFixed(2));
+    setFromAmount((parseFloat(newValue) / rate).toFixed(3));
   };
 
   useEffect(() => {
@@ -59,11 +59,11 @@ const Converter = () => {
   }, [codeFromCurrency, codeToCurrency, setRate]);
 
   useEffect(() => {
-    setToAmount((parseFloat(fromAmount) * rate).toFixed(2));
+    setToAmount((parseFloat(fromAmount) * rate).toFixed(3));
   }, [rate]);
 
   return (
-    <Grid container spacing={2} justifyContent="center">
+    <Grid container spacing={2} justifyContent="center" padding={"40px"}>
       <Grid item xs={12} md={6}>
         <InputAmount value={fromAmount} setValue={handleFromAmountChange} />
       </Grid>
