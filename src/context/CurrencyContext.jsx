@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import PropTypes from "prop-types";
 export const CurrencyContext = createContext();
 
 const CurrencyProvider = ({ children }) => {
@@ -26,10 +25,6 @@ const CurrencyProvider = ({ children }) => {
       {children}
     </CurrencyContext.Provider>
   );
-};
-
-CurrencyProvider.propTypes = {
-  children: PropTypes.ReactNode,
 };
 
 export default CurrencyProvider;

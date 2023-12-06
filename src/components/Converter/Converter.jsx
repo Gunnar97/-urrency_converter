@@ -42,7 +42,7 @@ const Converter = () => {
           const response = await getCurrency(
             "https://api.currencyapi.com/v3/latest",
             {
-              apikey: "cur_live_KRnDh1C3e9qj6ks7fAGWebBwqkyjBS3DkvvyxtEI",
+              apikey: "fca_live_pmF50MD73d07AdENqpTZapR2IXUKyEsybCFxBvEC",
               currencies: codeToCurrency,
               base_currency: codeFromCurrency,
             }
