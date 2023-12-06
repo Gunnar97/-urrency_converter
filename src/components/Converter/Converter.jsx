@@ -2,7 +2,7 @@ import { Alert, Grid } from "@mui/material";
 import InputAmount from "./InputAmount";
 import SelectCurrency from "./SelectCurrency";
 import SwitchCurrency from "./SwitchCurrency";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CurrencyContext } from "../../context/CurrencyContext";
 import { getCurrency } from "../../services/api";
 
@@ -20,19 +20,31 @@ const Converter = () => {
     setRate,
   } = useContext(CurrencyContext);
 
+  const [error, setError] = useState(null);
+
   const codeFromCurrency = fromCurrency.split(" ")[0];
   const codeToCurrency = toCurrency.split(" ")[0];
 
   const handleFromAmountChange = (eve) => {
     const newValue = eve.target.value;
-    setFromAmount(newValue);
-    setToAmount((parseFloat(newValue) * rate).toFixed(3));
+    if (!newValue.includes("-") || newValue > 0 || newValue === "") {
+      setFromAmount(newValue);
+      setToAmount((parseFloat(newValue) * rate).toFixed(3));
+      setError(null);
+    } else {
+      setError("Number should be greater than 0");
+    }
   };
 
   const handleToAmountChange = (eve) => {
     const newValue = eve.target.value;
-    setToAmount(newValue);
-    setFromAmount((parseFloat(newValue) / rate).toFixed(3));
+    if (!newValue.includes("-") || newValue > 0 || newValue === "") {
+      setToAmount(newValue);
+      setFromAmount((parseFloat(newValue) / rate).toFixed(3));
+      setError(null);
+    } else {
+      setError("Number should be greater than 0");
+    }
   };
 
   useEffect(() => {
@@ -64,8 +76,19 @@ const Converter = () => {
 
   return (
     <Grid container spacing={2} justifyContent="center" padding={"40px"}>
+      {error && (
+        <Grid item xs={12}>
+          <Alert variant="outlined" severity="warning">
+            {error}
+          </Alert>
+        </Grid>
+      )}
       <Grid item xs={12} md={6}>
-        <InputAmount value={fromAmount} setValue={handleFromAmountChange} />
+        <InputAmount
+          value={fromAmount}
+          setValue={handleFromAmountChange}
+          error={!!error}
+        />
       </Grid>
       <Grid item xs={12} md={6}>
         <SelectCurrency
@@ -78,7 +101,11 @@ const Converter = () => {
         <SwitchCurrency />
       </Grid>
       <Grid item xs={12} md={6}>
-        <InputAmount value={toAmount} setValue={handleToAmountChange} />
+        <InputAmount
+          value={toAmount}
+          setValue={handleToAmountChange}
+          error={!!error}
+        />
       </Grid>
       <Grid item xs={12} md={6}>
         <SelectCurrency
