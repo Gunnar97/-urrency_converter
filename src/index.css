@@ -5,6 +5,11 @@ body {
   overflow: hidden;
   font-family: "Roboto";
 }
+@media only screen and (max-width: 767px) {
+  body {
+    overflow: auto;
+  }
+}
 
 .symbol-container {
   position: absolute;
